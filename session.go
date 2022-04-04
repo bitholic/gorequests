@@ -34,6 +34,13 @@ func (r *Session) CookieFile() string {
 	return r.cookiefile
 }
 
+func (r *Session) AddOpts(options ...RequestOption) {
+	if r == nil {
+		return
+	}
+	r.options = append(r.options, options...)
+}
+
 var (
 	sessionLock sync.Mutex
 	sessionMap  map[string]*Session
