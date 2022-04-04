@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/chyroc/gorequests"
+	"github.com/bitholic/gorequests"
 )
 
 func Example_new() {

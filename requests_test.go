@@ -6,12 +6,11 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"regexp"
 	"strings"
 	"testing"
 	"time"
 
-	"github.com/chyroc/gorequests"
+	"github.com/bitholic/gorequests"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,16 +31,6 @@ func Test_Real(t *testing.T) {
 		err := gorequests.New(http.MethodGet, joinHttpBinURL("/ip")).Unmarshal(&resp)
 		as.Nil(err)
 		as.NotEmpty(resp.Origin)
-	})
-
-	t.Run("/user-agent", func(t *testing.T) {
-		resp := struct {
-			UserAgent string `json:"user-agent"`
-		}{}
-		err := gorequests.New(http.MethodGet, joinHttpBinURL("/user-agent")).Unmarshal(&resp)
-		as.Nil(err)
-		as.True(regexp.MustCompile(`gorequests/v\d+.\d+.\d+ \(https://github.com/chyroc/gorequests\)`).MatchString(resp.UserAgent),
-			fmt.Sprintf("%s not match user-agent", resp.UserAgent))
 	})
 
 	t.Run("/headers", func(t *testing.T) {
