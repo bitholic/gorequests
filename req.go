@@ -91,11 +91,11 @@ func (r *Request) WithHeaders(kv map[string]string) *Request {
 
 // WithHeaders set multi header k-v map
 func (r *Request) configHeader(k, v string) {
-	if strings.ToLower(k) == "user-agent" {
-		r.header.Set(k, v)
-	} else {
-		r.header.Add(k, v)
-	}
+	//if strings.ToLower(k) == "user-agent" {
+	r.header.Set(k, v)
+	//} else {
+	//	r.header.Add(k, v)
+	//}
 }
 
 // WithRedirect set allow or not-allow redirect with Location header
