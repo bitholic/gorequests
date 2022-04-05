@@ -82,7 +82,7 @@ func (r *Request) doRead() error {
 			return fmt.Errorf("[gorequest] %s %s read response failed: %w", r.method, r.cachedurl, err)
 		}
 
-		r.logger.Info(r.Context(), "[gorequests] %s: %s, doRead: %s", r.method, r.cachedurl, r.bytes)
+		r.logger.Info(r.Context(), "[gorequests] %s: %s, status_code: %d, header: %s, doRead: %s", r.method, r.cachedurl, r.resp.StatusCode, r.resp.Header, r.bytes)
 		return nil
 	})
 }
