@@ -1,8 +1,11 @@
 package gorequests
 
 import (
+	"bytes"
+	"compress/gzip"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"reflect"
 )
@@ -60,6 +63,16 @@ func (r *Request) Bytes() ([]byte, error) {
 	}
 	if err := r.doRead(); err != nil {
 		return nil, err
+	}
+	switch r.resp.Header.Get("Content-Encoding") {
+	case "gzip":
+		bsReader, err := gzip.NewReader(bytes.NewReader(r.bytes))
+		if err != nil {
+			return nil, err
+		}
+		defer bsReader.Close()
+		bs, err := ioutil.ReadAll(bsReader)
+		return bs, err
 	}
 
 	return r.bytes, nil
