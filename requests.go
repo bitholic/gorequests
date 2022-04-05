@@ -29,6 +29,7 @@ type Request struct {
 	method       string              // request method
 	rawBody      []byte              // []byte of body
 	body         io.Reader           // request body
+	fullUrl      string
 
 	// resp
 	resp      *http.Response

@@ -129,6 +129,10 @@ func getQueryToMapKeys(v interface{}) ([]s, error) {
 
 // request url
 func (r *Request) parseRequestURL() string {
+	if r.fullUrl != "" {
+		return r.fullUrl
+	}
+
 	URL, err := url.Parse(r.url)
 	if err != nil {
 		return r.url

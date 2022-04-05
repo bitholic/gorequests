@@ -40,6 +40,16 @@ func (r *Request) RequestFullURL() string {
 	return r.parseRequestURL()
 }
 
+func (r *Request) SetFullUrl(url string) {
+	r.lock.RLock()
+	defer r.lock.RUnlock()
+	if url == "" {
+		return
+	}
+
+	r.fullUrl = url
+}
+
 // Method request method
 func (r *Request) Method() string {
 	return r.method
