@@ -102,9 +102,9 @@ func (r *Request) WithHeaders(kv map[string]string) *Request {
 // WithHeaders set multi header k-v map
 func (r *Request) configHeader(k, v string) {
 	//if strings.ToLower(k) == "user-agent" {
-	r.header.Set(k, v)
+	//r.header.Set(k, v)
 	//} else {
-	//	r.header.Add(k, v)
+	r.header.Add(k, v)
 	//}
 }
 
